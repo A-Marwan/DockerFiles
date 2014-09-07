@@ -1,0 +1,24 @@
+mysql:
+    image: jmoati/mysql
+    ports:
+        - "127.0.0.1:3306:3306"
+php:
+    image: jmoati/php-fpm
+#    image: jmoati/hhvm
+    ports:
+        - "127.0.0.1:9000:9000"
+    volumes:
+        - ./web:/var/www
+    links:
+       - mysql:mysql
+
+nginx:
+    image: jmoati/nginx
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - ./web:/var/www
+        - ./sites-enabled:/etc/nginx/sites-enabled
+    links:
+        - php:php-fpm
