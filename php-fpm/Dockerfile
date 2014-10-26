@@ -1,4 +1,4 @@
-FROM jmoati/ubuntu:14.10
+FROM jmoati/ubuntu
 MAINTAINER Jacques Moati <jacques@moati.net>
 
 ENV DEBIAN_FRONTEND noninteractive
