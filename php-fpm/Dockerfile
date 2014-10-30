@@ -14,6 +14,10 @@ RUN rm -rf /etc/php5/cli/php.ini && \
 
 RUN echo "date.timezone= Europe/Paris" >>  /etc/php5/fpm/php.ini
 
+RUN cd /tmp && \
+    php -r "readfile('https://getcomposer.org/installer');" | php && \
+    mv composer.phar /usr/local/bin/composer
+
 CMD ["php5-fpm"]
 
 EXPOSE 9000
