@@ -19,6 +19,9 @@ RUN cd /tmp && \
     php -r "readfile('https://getcomposer.org/installer');" | php && \
     mv composer.phar /usr/local/bin/composer
     
+RUN wget http://get.sensiolabs.org/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer && \
+    chmod +x /usr/local/bin/php-cs-fixer
+    
 ADD squire /usr/local/bin/squire
 
 CMD ["php5-fpm"]
