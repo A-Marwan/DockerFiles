@@ -19,11 +19,7 @@ RUN cd /tmp && \
     php -r "readfile('https://getcomposer.org/installer');" | php && \
     mv composer.phar /usr/local/bin/composer
     
-ADD composer.json /tmp/composer.json && \
-    RUN cd /tmp && \
-    RUN composer update && \
-    RUN php ./bin/squire compile -g 
-    
+ADD squire /usr/local/bin
 
 CMD ["php5-fpm"]
 
