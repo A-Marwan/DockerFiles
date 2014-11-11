@@ -13,6 +13,7 @@ RUN rm -rf /etc/php5/cli/php.ini && \
     ln -s /etc/php5/fpm/php.ini /etc/php5/cli/php.ini
 
 RUN echo "date.timezone= Europe/Paris" >>  /etc/php5/fpm/php.ini
+RUN echo "phar.readonly = On" >> /etc/php5/fpm/php.ini
 
 RUN cd /tmp && \
     php -r "readfile('https://getcomposer.org/installer');" | php && \
