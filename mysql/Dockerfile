@@ -5,27 +5,26 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
 RUN apt-get update && \
-    apt-get -y install mysql-server-5.5
+    apt-get -y install mysql-server
 
-# Remove pre-installed database
+RUN sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf && \
+  sed -i 's/^\(log_error\s.*\)/# \1/' /etc/mysql/my.cnf && \
+  echo "mysqld_safe &" > /tmp/config && \
+  echo "mysqladmin --silent --wait=30 ping || exit 1" >> /tmp/config && \
+  echo "mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'" >> /tmp/config && \
+  bash /tmp/config && \
+  rm -f /tmp/config
 RUN rm -rf /var/lib/mysql/*
 
-# Add MySQL configuration
-ADD my.cnf /etc/mysql/conf.d/my.cnf
-ADD mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
 
-# Add MySQL scripts
-ADD import_sql.sh /import_sql.sh
-ADD run.sh /run.sh
-RUN chmod 755 /*.sh
+# Define mountable directories.
+VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
-# Add VOLUMEs to allow backup of config and databases
-VOLUME  ["/etc/mysql", "/var/lib/mysql"]
+# Define working directory.
+WORKDIR /data
 
+# Define default command.
+CMD ["mysqld_safe"]
+
+# Expose ports.
 EXPOSE 3306
-CMD ["/run.sh"]
-
-RUN apt-get autoremove && \
-    apt-get autoclean && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
