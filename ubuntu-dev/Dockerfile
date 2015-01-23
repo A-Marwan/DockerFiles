@@ -1,10 +1,10 @@
-FROM ubuntu:14.10
+FROM jmoati/ubuntu
 MAINTAINER Jacques Moati <jacques@moati.net>
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install -y git wget
+RUN apt-get install -y git nano htop
 
 RUN apt-get autoremove && \
     apt-get autoclean && \
