@@ -22,7 +22,7 @@ RUN chmod 755 /*.sh
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
 # Define default command.
-CMD ["mysqld_safe"]
+CMD ["/run.sh"]
 
 # Expose ports.
 EXPOSE 3306
