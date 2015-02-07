@@ -15,11 +15,11 @@ RUN sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf && \
     bash /tmp/config && \
     rm -f /tmp/config
 
+ADD run.sh /run.sh
+RUN chmod 755 /*.sh
+
 # Define mountable directories.
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
-
-# Define working directory.
-WORKDIR /data
 
 # Define default command.
 CMD ["mysqld_safe"]
