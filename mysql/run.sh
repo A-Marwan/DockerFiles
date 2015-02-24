@@ -37,6 +37,7 @@ if [[ ! -d $VOLUME_HOME/mysql ]]; then
     
     StartMySQL
     mysql -e 'GRANT ALL PRIVILEGES ON *.* TO "root"@"%" WITH GRANT OPTION;'
+    mysqladmin -uroot shutdown
     
     echo "=> Done!"
 else
