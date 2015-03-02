@@ -21,3 +21,8 @@ CMD ["/elasticsearch/bin/elasticsearch"]
 
 EXPOSE 9200
 EXPOSE 9300
+
+RUN apt-get autoremove && \
+    apt-get autoclean && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
