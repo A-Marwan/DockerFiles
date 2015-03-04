@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
 RUN apt-get update && \
-    apt-get -y install mysql-client nano
+    apt-get -y install mysql-client nano htop
     
 RUN apt-get autoremove && \
     apt-get autoclean && \
