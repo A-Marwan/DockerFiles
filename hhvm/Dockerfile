@@ -17,8 +17,7 @@ RUN cd /tmp && \
     php -r "readfile('https://getcomposer.org/installer');" | php && \
     mv composer.phar /usr/local/bin/composer
 
-CMD ["-m", "server", "-vServer.Type=fastcgi", "-vServer.Port=9000"]
-ENTRYPOINT ["hhvm"]
+CMD ["hhvm", "--mode",  "server",  "-vServer.Port=9000", "-vServer.Type=fastcgi"]
 
 EXPOSE 9000
 
