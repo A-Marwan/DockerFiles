@@ -15,6 +15,8 @@ RUN cd /tmp && \
 VOLUME ["/data"]
 ADD elasticsearch.yml /elasticsearch/config/elasticsearch.yml
 
+RUN /elasticsearch/bin/plugin --url https://github.com/SibaTokyo/elasticsearch-image/releases/download/1.4.0/elasticsearch-image-1.4.0.zip -install image
+
 WORKDIR /data
 
 CMD ["/elasticsearch/bin/elasticsearch"]
