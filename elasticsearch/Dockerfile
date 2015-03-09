@@ -4,7 +4,7 @@ MAINTAINER Jacques Moati <jacques@moati.net>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get install openjdk-8-jre-headless -y
+RUN apt-get install openjdk-7-jre-headless -y
 
 RUN cd /tmp && \
   wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.4.tar.gz && \
