@@ -4,6 +4,8 @@ MAINTAINER Jacques Moati <jacques@moati.net>
 RUN apt-get update && \
     apt-get install php5-xdebug
 
+RUN echo "xdebug.max_nesting_level=250" >>  /etc/php5/fpm/php.ini
+
 RUN wget http://get.sensiolabs.org/php-cs-fixer.phar -O /usr/local/bin/php-cs-fixer && \
     chmod +x /usr/local/bin/php-cs-fixer
     
