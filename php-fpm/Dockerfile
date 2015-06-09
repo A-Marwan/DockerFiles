@@ -1,9 +1,10 @@
-FROM jmoati/ubuntu
+FROM ubuntu:vivid
 MAINTAINER Jacques Moati <jacques@moati.net>
 
-ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
+
+RUN apt-get install -y git wget
 RUN apt-get install -y php5-fpm php5-cli php5-curl php5-gd php5-json php5-sqlite php5-apcu php5-intl php5-mcrypt php5-mysqlnd php5-redis php5-imagick
 
 RUN sed -i '/daemonize /c daemonize = no' /etc/php5/fpm/php-fpm.conf
