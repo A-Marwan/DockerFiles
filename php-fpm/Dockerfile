@@ -18,8 +18,8 @@ RUN echo "date.timezone= Europe/Paris" >>  /etc/php5/fpm/php.ini
 RUN echo "phar.readonly = Off" >> /etc/php5/fpm/php.ini
 
 RUN sed -i -e "s/^max_execution_time\s*=.*/max_execution_time = 200/" \
--e "s/^post_max_size\s*=.*/post_max_size = 1G/" \
--e "s/^upload_max_filesize\s*=.*/upload_max_filesize = 1G\nupload_max_size = 1G/" \
+-e "s/^post_max_size\s*=.*/post_max_size = 10G/" \
+-e "s/^upload_max_filesize\s*=.*/upload_max_filesize = 10G\nupload_max_size = 10G/" \
 -e "s/^memory_limit\s*=.*/memory_limit = 256M/" /etc/php5/fpm/php.ini
 
 RUN cd /tmp && \
